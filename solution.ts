@@ -1,13 +1,12 @@
-function getPermutations(input: string | number[]): string[] | number[][] {
-    if (typeof input === 'string') {
+else {
         if (input.length === 1) return [input];
-        const permutations: string[] = [];
+        const permutations: number[][] = [];
         for (let i = 0; i < input.length; i++) {
-            const char = input[i];
-            if (input.indexOf(char) != i) continue;
-            const remainingString = input.slice(0, i) + input.slice(i + 1, input.length);
-            for (let subPermutation of getPermutations(remainingString))
-                permutations.push(char + subPermutation);
+            const num = input[i];
+            const remainingNums = input.filter((_, index) => index !== i);
+            for (let subPermutation of getPermutations(remainingNums))
+                permutations.push([num].concat(subPermutation));
         }
         return permutations;
     }
+}
